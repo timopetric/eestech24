@@ -10,7 +10,10 @@ DATA_GLOB_PLANINSKE_MAKRO_ALL = '../data/planinstvo/2024/*.csv'
 
 DATA_PRENOCISCA = '../data/prenocisca/prenocisca_2023_2024_vse_regije.csv'
 
-DATA_VREME = '../data/vreme/ECA_blended_custom/RR_STAID000228.csv'
+DATA_VREME_PERCP = '../data/vreme/ECA_blended_precipitation/RR_STAID000228.csv'
+DATA_VREME_SUNSHINE = '../data/vreme/ECA_blended_sunshine/SS_STAID000228.csv'
+DATA_VREME_TEMP = '../data/vreme/ECA_blended_mean_temp/TG_STAID000228.csv'
+
 OUT_VREME = '../data/vreme/processed/vreme_processed.csv'
 
 DATA_PRAZNIKI = '../data/prazniki/seznampraznikovindelaprostihdni20002030.csv'
