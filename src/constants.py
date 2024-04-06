@@ -6,3 +6,6 @@ DATA_GORSKE_1 = '../data/gorske_nesrece/Gorske-od-18.10.2022-dalje.csv'
 DATA_GLOB_PLANINSKE_MAKRO_2022 = '../data/planinstvo/2022/*.csv'
 DATA_GLOB_PLANINSKE_MAKRO_2023 = '../data/planinstvo/2023/*.csv'
 
+DATA_GLOB_PLANINSKE_MAKRO_ALL = '../data/planinstvo/2024/*.csv'
+
+OUT_PLANINSTVO = '../data/planinstvo/processed/all-0.csv'
