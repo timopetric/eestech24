@@ -8,4 +8,7 @@ DATA_GLOB_PLANINSKE_MAKRO_2023 = '../data/planinstvo/2023/*.csv'
 
 DATA_GLOB_PLANINSKE_MAKRO_ALL = '../data/planinstvo/2024/*.csv'
 
+DATA_PRAZNIKI = '../data/prazniki/seznampraznikovindelaprostihdni20002030.csv'
+OUT_PRAZNIKI = '../data/prazniki/prazniki_processed.csv'
+
 OUT_PLANINSTVO = '../data/planinstvo/processed/all-0.csv'

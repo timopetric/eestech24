@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from constants import *
 from glob import glob
-from datetime import datetime
 import os
+
 
 def read_data():
     print(DATA_GLOB_PLANINSKE_MAKRO_ALL)
