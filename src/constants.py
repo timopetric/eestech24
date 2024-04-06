@@ -12,3 +12,6 @@ DATA_PRAZNIKI = '../data/prazniki/seznampraznikovindelaprostihdni20002030.csv'
 OUT_PRAZNIKI = '../data/prazniki/prazniki_processed.csv'
 
 OUT_PLANINSTVO = '../data/planinstvo/processed/all-0.csv'
+OUT_PLANINSTVO_END = '../data/planinstvo/processed/all-1.csv'
+
+OUT_MODEL = '../models/RandomForestClassifier'
