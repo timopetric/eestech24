@@ -24,3 +24,7 @@ def save_prediction(db: Session, prediction: schemas.PredictionBase, final_predi
     db.commit()
     db.refresh(db_prediction)
     return db_prediction
+
+# get predictions by date
+def get_predictions_by_date(db: Session, date: str, location_id: int):
+    return db.query(models.Prediction).filter(models.Prediction.date == date, models.Prediction.location_id == location_id).all()
