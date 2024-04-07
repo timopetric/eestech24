@@ -1,9 +1,9 @@
 <template>
   <div class="card-container">
     <div v-for="(row, index) in rows" :key="index" class="card-row">
-      <div :class="['card', getStatusClass(prediction.status)]" v-for="(prediction, idx) in row" :key="idx">
-        <h2>{{ prediction.location }}</h2>
-        <p>Napoved za jutrišnji dan: {{ getStatusString(prediction.status) }}</p>
+      <div :class="['card', getStatusClass(prediction)]" v-for="(prediction, idx) in row" :key="idx">
+        <h2>{{ getLocation((index*3)+ idx) }}</h2>
+        <p>Napoved za jutrišnji dan: {{ getStatusString(prediction) }}</p>
       </div>
     </div>
   </div>
@@ -24,24 +24,20 @@ export default {
     }
   },
   mounted() {
-    // Fetch data from your backend or use mock data
+    // Fetch data from your backend
     this.fetchPredictions();
   },
   methods: {
-    fetchPredictions() {
-      // Mock data for demonstration
-      // TODO change this to fetch data from your backend
-      setTimeout(() => {
-        this.predictions = [
-          { location: 'Mountain A', numPeople: 100, status: 0 },
-          { location: 'Mountain B', numPeople: 50, status: 1 },
-          { location: 'Mountain C', numPeople: 80, status: 2 },
-          { location: 'Mountain D', numPeople: 120, status: 3 },
-          { location: 'Mountain E', numPeople: 70, status: 1 },
-          { location: 'Mountain F', numPeople: 90, status: 2 }
-        ];
+    async fetchPredictions() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/predict/2023-06-14'); // Update the URL with your actual API endpoint
+        const data = await response.json();
+        this.predictions = data.predictions;
+        console.log(this.predictions)
         this.loading = false;
-      }, 500);
+      } catch (error) {
+        console.error('Error fetching predictions:', error);
+      }
     },
     chunkArray(array, size) {
       // Split array into chunks of specified size
@@ -75,6 +71,20 @@ export default {
         return 'ni podatka';
       }
       return '';
+    }, 
+    getLocation(prediction) {
+      const locationDict = {
+        0: "Kum",
+        1: "Lovrenška jezera",
+        2: "Osp",
+        3: "Storžič",
+        4: "Triglavski narodni park",
+        5: "Vršič",
+      };
+      const locationIndex = locationDict[prediction];
+      const locations = Object.keys(locationDict);
+      console.log(locationIndex)
+      return locationIndex;
     }
   }
 };

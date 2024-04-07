@@ -5,25 +5,7 @@
             alt="Slovenia Map"
             style="max-width: 100%; height: auto;"
         />
-        <div class="pin" style="top: 35%; left: 20%;" :style="{ backgroundColor: getPinColor(0).color }">
-            <div class="pin-label">{{ getPinColor(0).label }}</div>
-        </div>
-        <div class="pin" style="top: 38%; left: 15%;" :style="{ backgroundColor: getPinColor(0).color }">
-            <div class="pin-label">{{ getPinColor(0).label }}</div>
-        </div>
-        <div class="pin" style="top: 85%; left: 15%;" :style="{ backgroundColor: getPinColor(1).color }">
-            <div class="pin-label">{{ getPinColor(1).label }}</div>
-        </div>
-        <div class="pin" style="top: 40%; left: 35%;" :style="{ backgroundColor: getPinColor(2).color }">
-            <div class="pin-label">{{ getPinColor(2).label }}</div>
-        </div>
-        <div class="pin" style="top: 57%; left: 55%;" :style="{ backgroundColor: getPinColor(3).color }">
-            <div class="pin-label">{{ getPinColor(3).label }}</div>
-        </div>
-        <div class="pin" style="top: 33%; left: 60%;" :style="{ backgroundColor: getPinColor(2).color }">
-            <div class="pin-label">{{ getPinColor(2).label }}</div>
-        </div>
-        <!-- Add more pins here -->
+        <!-- Pins will be dynamically rendered here -->
     </div>
 </template>
 
@@ -31,13 +13,80 @@
 export default {
     data() {
         return {
-            status: null
+            predictions: []
         };
     },
     mounted() {
-        // Fetching status is removed for simplicity
+        // Fetch predictions when the component is mounted
+        this.fetchPredictions();
     },
     methods: {
+        async fetchPredictions() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict/2023-06-14');
+                const data = await response.json();
+                this.predictions = data.predictions;
+                this.renderPins();
+                // show in log
+                console.log(this.predictions);
+            } catch (error) {
+                console.error('Error fetching predictions:', error);
+            }
+        },
+        renderPins() {
+            // Remove any existing pins
+            const pins = document.querySelectorAll('.pin');
+            pins.forEach(pin => pin.remove());
+
+            // Render new pins based on predictions
+            this.predictions.forEach((value, index) => {
+                const pin = document.createElement('div');
+                pin.className = 'pin';
+                pin.style.backgroundColor = this.getPinColor(value).color;
+
+                const pinLabel = document.createElement('div');
+                pinLabel.className = 'pin-label';
+                pinLabel.textContent = this.getPinColor(value).label;
+
+                pin.appendChild(pinLabel);
+
+                // Set position of the pin dynamically
+                let top, left;
+                switch (index) {
+                    case 4:
+                        top = '35%';
+                        left = '20%';
+                        break;
+                    case 5:
+                        top = '38%';
+                        left = '15%';
+                        break;
+                    case 2:
+                        top = '85%';
+                        left = '15%';
+                        break;
+                    case 3:
+                        top = '40%';
+                        left = '35%';
+                        break;
+                    case 0:
+                        top = '57%';
+                        left = '55%';
+                        break;
+                    case 1:
+                        top = '33%';
+                        left = '60%';
+                        break;
+                    // Add more cases here if needed
+                    default:
+                        break;
+                }
+                pin.style.top = top;
+                pin.style.left = left;
+
+                document.querySelector('.map-container').appendChild(pin);
+            });
+        },
         getPinColor(value) {
             switch (value) {
                 case 0:

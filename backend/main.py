@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 import crud, models, schemas
 from database import SessionLocal, engine
+from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -26,6 +27,16 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# disable CORS 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/")
 async def root():
