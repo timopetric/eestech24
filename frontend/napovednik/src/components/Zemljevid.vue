@@ -17,8 +17,8 @@
         <div class="pin" style="top: 40%; left: 35%;" :style="{ backgroundColor: getPinColor(2).color }">
             <div class="pin-label">{{ getPinColor(2).label }}</div>
         </div>
-        <div class="pin" style="top: 57%; left: 55%;" :style="{ backgroundColor: getPinColor(2).color }">
-            <div class="pin-label">{{ getPinColor(2).label }}</div>
+        <div class="pin" style="top: 57%; left: 55%;" :style="{ backgroundColor: getPinColor(3).color }">
+            <div class="pin-label">{{ getPinColor(3).label }}</div>
         </div>
         <div class="pin" style="top: 33%; left: 60%;" :style="{ backgroundColor: getPinColor(2).color }">
             <div class="pin-label">{{ getPinColor(2).label }}</div>
@@ -46,6 +46,8 @@ export default {
                     return { color: 'orange', label: 'Srednja' };
                 case 2:
                     return { color: 'red', label: 'Visoka' };
+                case 3:
+                    return { color: 'gray', label: 'N/A' };
                 default:
                     return { color: 'red', label: 'Visoka' };
             }
