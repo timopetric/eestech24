@@ -1,0 +1,3 @@
+https://www.ecad.eu/dailydata/customquery.php?optionSelected=blending&processtext1=Your+query+is+being+processed.+Please+wait...&blendingselect=yes&countryselect=All+countries%7C**&stationselect=All+stations%7C**&elementselect=All+elements%7C**&processtext2=Your+query+is+being+processed.+Please+wait...
+
+Podatki o vremenu so bili pridobljeni iz evropskega klimatskega servisa. Vsebujejo podatke o temperaturi, padavinah in količino sonca. Uporabljeni so bili podatki iz postaje Ljubljana Bežigrad.

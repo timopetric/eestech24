@@ -1,0 +1,1 @@
+Te podatke smo dobili na izzivu. Vsebujejo podatke o gorskih nesrečah v Sloveniji. Nismo jih uporabili.

@@ -1,0 +1,1 @@
+Vsebujejo podatke o prenočitvah v Sloveniji. Nismo jih uporabili.
