@@ -1,3 +1,5 @@
+# not used. We used explore-planinstvo.ipynb
+
 # read csv into df
 import pandas as pd
 import numpy as np
