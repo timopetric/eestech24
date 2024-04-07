@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
-
-from . import models, schemas
+import models, schemas
 
 #create a new prediction
 def create_prediction(db: Session, prediction: schemas.PredictionBase):
@@ -17,3 +16,11 @@ def get_predictions(db: Session, skip: int = 0, limit: int = 100):
 # return a a prediction by location_id
 def get_prediction_by_location_id(db: Session, location_id: int):
     return db.query(models.Prediction).filter(models.Prediction.location_id == location_id).first()
+
+# save a prediction
+def save_prediction(db: Session, prediction: schemas.PredictionBase, final_prediction: int):
+    db_prediction = models.Prediction(**prediction.model_dump(), final_prediction=final_prediction)
+    db.add(db_prediction)
+    db.commit()
+    db.refresh(db_prediction)
+    return db_prediction

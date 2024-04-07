@@ -1,6 +1,6 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Float
 
-from .database import Base
+from database import Base
 from datetime import datetime
 
 class Prediction(Base):
@@ -12,6 +12,10 @@ class Prediction(Base):
     day_of_week = Column(Integer, index=True)
     free_day = Column(Boolean, index=True)
     month = Column(Integer, index=True)
-    pretocnost_7 = Column(Integer, index=True)
-    pretocnost_3 = Column(Integer, index=True)
+    pretocnost_7 = Column(Float, index=True)
+    pretocnost_3 = Column(Float, index=True)
     pretocnost_q = Column(Integer, index=True)
+    final_prediction = Column(Integer, index=True)
+    rr = Column(Float, index=True)
+    ss = Column(Float, index=True)
+    tg = Column(Float, index=True)

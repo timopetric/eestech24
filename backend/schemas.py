@@ -13,6 +13,10 @@ class PredictionBase(BaseModel):
 
 class Predictions(PredictionBase):
     id: int
+    final_prediction: int
 
     class Config:
         orm_mode = True
+
+class PredictionCreate(PredictionBase):
+    pass
