@@ -1,19 +1,29 @@
 <template>
     <div class="map-container">
-        <img
-            src="../assets/slovenia-hd-map-3744772488.jpg"
-            alt="Slovenia Map"
-            style="max-width: 100%; height: auto;"
+      <div class="search-bar">
+        <input 
+          type="text" 
+          v-model="searchQuery" 
+          placeholder="Search..." 
+          @keydown.enter="this.fetchPredictions"
         />
-        <!-- Pins will be dynamically rendered here -->
+      </div>
+      <img
+        src="../assets/slovenia-hd-map-3744772488.jpg"
+        alt="Slovenia Map"
+        style="max-width: 100%; height: auto;"
+      />
+      <!-- Pins will be dynamically rendered here -->
     </div>
-</template>
+  </template>
+  
 
 <script>
 export default {
     data() {
         return {
-            predictions: []
+            predictions: [],
+            searchQuery: '2023-06-06'
         };
     },
     mounted() {
@@ -23,7 +33,7 @@ export default {
     methods: {
         async fetchPredictions() {
             try {
-                const response = await fetch('http://127.0.0.1:8000/predict/2023-06-14');
+                const response = await fetch(`http://127.0.0.1:8000/predict/${this.searchQuery}`);
                 const data = await response.json();
                 this.predictions = data.predictions;
                 this.renderPins();
@@ -108,6 +118,17 @@ export default {
 <style>
 .map-container {
     position: relative;
+}
+
+.search-bar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.search-bar input {
+    width: 200px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
 }
 
 .pin {

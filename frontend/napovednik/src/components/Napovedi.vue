@@ -1,5 +1,13 @@
 <template>
   <div class="card-container">
+    <div class="search-bar">
+      <input 
+        type="text" 
+        v-model="searchQuery" 
+        placeholder="Search..." 
+        @keydown.enter="fetchPredictions"
+      />
+    </div>
     <div v-for="(row, index) in rows" :key="index" class="card-row">
       <div :class="['card', getStatusClass(prediction)]" v-for="(prediction, idx) in row" :key="idx">
         <h2>{{ getLocation((index*3)+ idx) }}</h2>
@@ -14,12 +22,12 @@ export default {
   data() {
     return {
       loading: true,
-      predictions: []
+      predictions: [],
+      searchQuery: '2023-06-06'
     };
   },
   computed: {
     rows() {
-      // Split predictions into chunks of three
       return this.chunkArray(this.predictions, 3);
     }
   },
@@ -30,7 +38,7 @@ export default {
   methods: {
     async fetchPredictions() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/predict/2023-06-14'); // Update the URL with your actual API endpoint
+        const response = await fetch(`http://127.0.0.1:8000/predict/${this.searchQuery}`); // Update the URL with your actual API endpoint
         const data = await response.json();
         this.predictions = data.predictions;
         console.log(this.predictions)
@@ -133,5 +141,11 @@ h2 {
 
 p {
   margin-bottom: 0;
+}
+
+.search-bar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 </style>
